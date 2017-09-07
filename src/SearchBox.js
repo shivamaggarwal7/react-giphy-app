@@ -34,9 +34,9 @@ class SearchBox extends Component {
     render() {
      	     
     return (
-      <div className="App">
-         <input type="text" placeholder="Search Gifs" id="search" value={this.state.value} onChange={this.handleChange}/>
-         <br/><input type="Submit" value="Submit" onClick={() => {this.fetchResults(this.state.searchQuery)}}/>
+      <div className="form-inline">
+         <input type="text" placeholder="Search Gifs" id="search" value={this.state.value} onChange={this.handleChange} class="form-control "/>
+         <button type="submit" value="Submit" onClick={() => {this.fetchResults(this.state.searchQuery)}} class="btn btn-default">Submit</button>
          <DisplayImages items={this.state.items}/>
          
       </div>
