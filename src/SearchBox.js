@@ -17,7 +17,7 @@ class SearchBox extends Component {
 	fetchResults(props)
 	{
 		console.log(this.state.value);
-       fetch(`https://api.giphy.com/v1/gifs/search?api_key=0d05b586e3ff4884b6dc9837d9601726&limit=25&offset=0&rating=G&lang=fr&q=`+this.state.value)
+       fetch(`https://api.giphy.com/v1/gifs/search?api_key=0d05b586e3ff4884b6dc9837d9601726&limit=20&offset=0&rating=G&lang=fr&q=`+this.state.value)
            .then(result=>result.json())
              .then(res =>{
            	                this.setState( {items : res.data} )
@@ -31,13 +31,17 @@ class SearchBox extends Component {
     }
 
     render() {
-     	
+     	     
     return (
       <div className="App">
          <input type="text" placeholder="Search Gifs" id="search" value={this.state.value} onChange={this.handleChange}/>
          <br/><input type="Submit" value="Submit" onClick={() => {this.fetchResults(this.state.searchQuery)}}/>
-       { this.state.items.length > 0 &&
-          <img src={this.state.items[0].images.preview_gif.url} alt="Giphy"/>
+         
+         { this.state.items.length > 0 &&
+       	  this.state.items.map(( { images }) => (
+         <img  src={ images.preview_gif.url } width="200px" height="200px" />
+                        ))
+          
         }
       </div>
     );
