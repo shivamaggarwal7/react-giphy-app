@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import DisplayImages from './DisplayImages.js';
 
 class SearchBox extends Component {
 
@@ -36,13 +37,8 @@ class SearchBox extends Component {
       <div className="App">
          <input type="text" placeholder="Search Gifs" id="search" value={this.state.value} onChange={this.handleChange}/>
          <br/><input type="Submit" value="Submit" onClick={() => {this.fetchResults(this.state.searchQuery)}}/>
+         <DisplayImages items={this.state.items}/>
          
-         { this.state.items.length > 0 &&
-       	  this.state.items.map(( { images }) => (
-         <img  src={ images.preview_gif.url } width="200px" height="200px" />
-                        ))
-          
-        }
       </div>
     );
   }
